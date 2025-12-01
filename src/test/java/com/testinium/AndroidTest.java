@@ -21,7 +21,7 @@ public class AndroidTest extends BaseTest {
         konumIzniAlertVarsaTikla("Tamam");
         konumIzniAlertVarsaTikla("İzin Ver");
         waitBySecond(2);
-        WebElement profileButton= driver.findElement(AppiumBy.id("android:id/`bottomBarItem_Profile")););
+        WebElement profileButton= driver.findElement(AppiumBy.id("android:id/`bottomBarItem_Profile"));
         profileButton.click();
 
     }
@@ -37,7 +37,7 @@ public class AndroidTest extends BaseTest {
         konumIzniAlertVarsaTikla("Tamam");
         konumIzniAlertVarsaTikla("İzin Ver");
         waitBySecond(2);
-        WebElement profileButton= driver.findElement(AppiumBy.id("android:id/`bottomBarItem_Prosadsadasdfile")););
+        WebElement profileButton= driver.findElement(AppiumBy.id("android:id/`bottomBarItem_Prosadsadasdfile"));
         profileButton.click();
 
     }
