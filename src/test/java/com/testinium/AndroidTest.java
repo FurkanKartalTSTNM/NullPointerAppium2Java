@@ -2,34 +2,66 @@ package com.testinium;
 
 import io.appium.java_client.AppiumBy;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+
+import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
 
 public class AndroidTest extends BaseTest {
 
     @Test
-    public void basicAndroidTest() throws InterruptedException {
-        WebElement generalButton = driver.findElement(AppiumBy.xpath("(//android.widget.ImageView[@resource-id=\"com.gratis.android:id/navigation_bar_item_icon_view\"])[1]"));
-        generalButton.click();
-        logger.info("Clicked to HomePage");
+    public  void SuccessAndroid() throws InterruptedException {
+        waitBySecond(2);
+        konumIzniAlertVarsaTikla("İzin Ver");
+        konumIzniAlertVarsaTikla("İzin Ver");
+        konumIzniAlertVarsaTikla("Uygulamayı Kullanırken İzin Ver");
+        konumIzniAlertVarsaTikla("Allow While Using App");
+        konumIzniAlertVarsaTikla("İzin Ver");
+        konumIzniAlertVarsaTikla("Tamam");
+        konumIzniAlertVarsaTikla("İzin Ver");
+        waitBySecond(2);
+        WebElement profileButton= driver.findElement(AppiumBy.id("android:id/`bottomBarItem_Profile")););
+        profileButton.click();
 
-        Thread.sleep(2000);
+    }
 
-        WebElement kategorilerButton = driver.findElement(AppiumBy.xpath("//android.widget.TextView[@resource-id=\"com.gratis.android:id/navigation_bar_item_small_label_view\" and @text=\"Kategoriler\"]"));
-        kategorilerButton.click();
-        logger.info("Clicked to Kategoriler Button");
+    @Test
+    public  void FailAndroid() throws InterruptedException {
+        waitBySecond(2);
+        konumIzniAlertVarsaTikla("İzin Ver");
+        konumIzniAlertVarsaTikla("İzin Ver");
+        konumIzniAlertVarsaTikla("Uygulamayı Kullanırken İzin Ver");
+        konumIzniAlertVarsaTikla("Allow While Using App");
+        konumIzniAlertVarsaTikla("İzin Ver");
+        konumIzniAlertVarsaTikla("Tamam");
+        konumIzniAlertVarsaTikla("İzin Ver");
+        waitBySecond(2);
+        WebElement profileButton= driver.findElement(AppiumBy.id("android:id/`bottomBarItem_Prosadsadasdfile")););
+        profileButton.click();
 
-        Thread.sleep(2000);
+    }
 
-        WebElement makyajButton = driver.findElement(AppiumBy.xpath("//android.widget.TextView[@resource-id=\"com.gratis.android:id/category_name\" and @text=\"Makyaj\"]"));
-        makyajButton.click();
-        logger.info("Clicked to Makyaj Button");
 
-        Thread.sleep(2000);
+    public void konumIzniAlertVarsaTikla(String text) {
+        try {
+            HashMap<String, String> args = new HashMap<>();
+            args.put("action", "accept");
+            args.put("buttonLabel", text);
 
-        WebElement backButton = driver.findElement(AppiumBy.id("com.gratis.android:id/btnBack"));
-        backButton.click();
-        logger.info("Clicked to Back Button");
+            ((JavascriptExecutor) driver).executeScript("mobile: alert", args);
+            System.out.println("mobile: alert ile '" + text + "' butonuna tıklandı.");
+        } catch (Exception e) {
+            System.out.println("Alert bulunamadı veya '" + text + "' butonu tıklanamadı. Devam ediliyor...");
 
-        Thread.sleep(2000);
+        }
+    }
+
+    public void waitBySecond(int seconds) {
+        try {
+            TimeUnit.SECONDS.sleep(seconds);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
