@@ -26,7 +26,7 @@ public class AndroidTest extends BaseTest {
         try {
             WebElement profileButton = wait.until(
                     ExpectedConditions.elementToBeClickable(
-                            AppiumBy.id("com.gratis.android.dev:id/bottomBarItem_Profile")
+                            AppiumBy.xpath("/hierarchy/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/androidx.compose.ui.platform.ComposeView/androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[3]/android.view.View/android.view.View/android.view.View[5]/android.view.View[2]")
                     )
             );
 
@@ -44,18 +44,14 @@ public class AndroidTest extends BaseTest {
         tapAllLocationAlerts();
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-
-        // Bilerek saçma/yanlış locator
         var wrongLocator = AppiumBy.id("com.gratis.android.dev:id/bottomBarItem_Prosadsadasdfile");
 
         try {
-            // Eğer bu satır element bulursa, bu beklenmeyen durum → FAIL
             wait.until(ExpectedConditions.elementToBeClickable(wrongLocator)).click();
             Assertions.fail("Yanlış locator ile bile element bulundu, bu beklenmiyordu!");
-
         } catch (TimeoutException e) {
-            // Beklenen durum: element yok → negatif senaryo BAŞARILI (test PASS)
-            System.out.println("Beklenen şekilde element bulunamadı, negatif Android senaryosu başarılı.");
+            // Bu da bizim için FAIL
+            Assertions.fail("Yanlış locator nedeniyle element bulunamadı, test bilerek fail edildi.", e);
         }
     }
 
