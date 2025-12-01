@@ -21,8 +21,6 @@ public class AndroidTest extends BaseTest {
         waitBySecond(2);
         tapAllLocationAlerts();
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-
     }
 
     @Test
