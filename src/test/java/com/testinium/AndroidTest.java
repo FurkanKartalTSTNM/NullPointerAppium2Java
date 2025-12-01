@@ -23,13 +23,19 @@ public class AndroidTest extends BaseTest {
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-        WebElement profileButton = wait.until(
-                ExpectedConditions.elementToBeClickable(
-                        AppiumBy.id("com.gratis.android.dev:id/bottomBarItem_Profile")
-                )
-        );
+        try {
+            WebElement profileButton = wait.until(
+                    ExpectedConditions.elementToBeClickable(
+                            AppiumBy.id("com.gratis.android.dev:id/bottomBarItem_Profile")
+                    )
+            );
 
-        profileButton.click();
+            profileButton.click();
+
+        } catch (TimeoutException e) {
+            // ERROR yerine kontrollü FAIL
+            Assertions.fail("Profil butonu 10 saniye içinde görünür/clickable olmadı.", e);
+        }
     }
 
     @Test
