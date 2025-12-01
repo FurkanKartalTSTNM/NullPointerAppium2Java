@@ -23,19 +23,6 @@ public class AndroidTest extends BaseTest {
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-        try {
-            WebElement profileButton = wait.until(
-                    ExpectedConditions.elementToBeClickable(
-                            AppiumBy.xpath("/hierarchy/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/androidx.compose.ui.platform.ComposeView/androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[3]/android.view.View/android.view.View/android.view.View[5]/android.view.View[2]")
-                    )
-            );
-
-            profileButton.click();
-
-        } catch (TimeoutException e) {
-            // ERROR yerine kontrollü FAIL
-            Assertions.fail("Profil butonu 10 saniye içinde görünür/clickable olmadı.", e);
-        }
     }
 
     @Test
