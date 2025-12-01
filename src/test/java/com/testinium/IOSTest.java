@@ -2,6 +2,7 @@ package com.testinium;
 
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.TimeoutException;
@@ -24,14 +25,24 @@ public class IOSTest extends BaseTest {
         waitBySecond(2);
         tapAllLocationAlerts();
 
-        // iOS butonu için locator
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement kategorilerButton = wait.until(
-                ExpectedConditions.elementToBeClickable(
-                        AppiumBy.xpath("//XCUIElementTypeButton[contains(@name, \"mainTabCategoriesTabBtn\")]")
-                )
-        );
-        kategorilerButton.click();
+
+        try {
+            WebElement kategorilerButton = wait.until(
+                    ExpectedConditions.elementToBeClickable(
+                            AppiumBy.xpath("//XCUIElementTypeButton[contains(@name, \"mainTabCategoriesTabBtn\")]")
+                    )
+            );
+            kategorilerButton.click();
+
+        } catch (TimeoutException e) {
+            // Burada artık ERROR değil, kontrollü FAIL üretiyoruz
+            Assertions.fail(
+                    "Kategori butonu 10 saniye içinde görünür / tıklanabilir olmadı. " +
+                            "Locator yanlış olabilir ya da ekran beklediğimiz durumda değil.",
+                    e
+            );
+        }
     }
 
     /**
