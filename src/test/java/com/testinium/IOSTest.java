@@ -28,7 +28,7 @@ public class IOSTest extends BaseTest {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement kategorilerButton = wait.until(
                 ExpectedConditions.elementToBeClickable(
-                        AppiumBy.xpath("//XCUIElementTypeButton[contains(@name, \"mainTabCategoriesTabBtn\")]")
+                        AppiumBy.xpath("//XCUIElementTypeButton[@name=\"mainTabCategoriesTabBtn\"]")]")
                 )
         );
         kategorilerButton.click();
