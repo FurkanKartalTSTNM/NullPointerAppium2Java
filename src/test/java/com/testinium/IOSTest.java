@@ -25,10 +25,10 @@ public class IOSTest extends BaseTest {
         tapAllLocationAlerts();
 
         // iOS butonu için locator
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         WebElement kategorilerButton = wait.until(
                 ExpectedConditions.elementToBeClickable(
-                        AppiumBy.xpath("**/XCUIElementTypeButton['label==\"Kategoriler\"']")
+                        AppiumBy.xpath("//XCUIElementTypeButton[contains(@name, \"mainTabCategoriesTabBtn\")]")
                 )
         );
         kategorilerButton.click();
